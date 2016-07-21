@@ -11,12 +11,9 @@ func main() {
 	serviceStateManager := state.New()
 
 	if strings.EqualFold(function, "add") {
-		serviceName := os.Args[2]
-		command := os.Args[3]
-		serviceStateManager.AddService(serviceName, command)
+		serviceStateManager.AddService(os.Args[2], os.Args[3])
 	} else if strings.EqualFold(function, "start") {
-		serviceName := os.Args[2]
-		command := serviceStateManager.GetService(serviceName)
+		command := serviceStateManager.GetService(os.Args[2])
 		state.Start(command)
 	} else if strings.EqualFold(function, "list") {
 		serviceStateManager.List()
@@ -25,8 +22,6 @@ func main() {
 	} else if strings.EqualFold(function, "delete-all") {
 		serviceStateManager.RemoveAll()
 	}
-
-
 
 	serviceStateManager.Close()
 

@@ -55,7 +55,7 @@ func (state *State) Remove(service string) {
 func (state *State) RemoveAll() {
 	state.database.Update(func(tx *bolt.Tx) error {
 		err := tx.DeleteBucket([]byte("Service"))
-		if err == nil{
+		if err == nil {
 			_, er := tx.CreateBucket([]byte("Service"))
 			return er
 		}
